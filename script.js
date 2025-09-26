@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const row = document.createElement('div');
         row.classList.add('record-row');
 
-        const moodEmojis = { '행복': '😄', '보통': '😐', '우울': '😔', '분노': '😡' };
-        const typeText = { 'deed': '😊 선행했어요', 'help': '💖 도움받았어요' };
+        const moodEmojis = { '상쾌': '🍃', '따뜻함': '🔥', '낭만적': '🌙', '고요': '🌌' };
+        const typeText = { 'deed': '😊 좋아합니다', 'help': '💖 좋아합니다' };
 
         row.innerHTML = `
             <div class="record-type ${record.Type}">${typeText[record.Type] || record.Type}</div>
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     },
                     title: {
                         display: true,
-                        text: '전체 기분 통계'
+                        text: '전체 계절 통계'
                     }
                 }
             }
