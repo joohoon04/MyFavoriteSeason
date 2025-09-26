@@ -66,6 +66,7 @@ header h1 {
     border-radius: 12px;
     box-shadow: 0 4px 15px var(--shadow-color);
     margin-bottom: 40px;
+    border-left: 6px solid var(--primary-color);
 }
 
 .form-group {
@@ -376,14 +377,14 @@ footer {
                 <div class="form-group">
                     <label>계절을 떠올렸을 때 기분</label>
                     <div class="mood-selector">
-                        <input type="radio" id="mood-spring" name="mood" value="상쾌" checked>
-                        <label for="mood-happy">🍃 상쾌</label>
+                        <input type="radio" id="mood-spring" name="mood" value="상쾌">
+                        <label for="mood-spring">🍃 상쾌</label>
                         <input type="radio" id="mood-summer" name="mood" value="따뜻함">
-                        <label for="mood-proud">🔥 따뜻함</label>
+                        <label for="mood-summer">🔥 따뜻함</label>
                         <input type="radio" id="mood-autumn" name="mood" value="낭만적">
-                        <label for="mood-thankful">🌙 낭만적</label>
+                        <label for="mood-autumn">🌙 낭만적</label>
                         <input type="radio" id="mood-winter" name="mood" value="고요">
-                        <label for="mood-moved">🌌 고요</label>
+                        <label for="mood-winter">🌌 고요</label>
                     </div>
                 </div>
                 <button type="submit">내가 기록한 계절들</button>
@@ -593,6 +594,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 초기 데이터 로드
     loadRecords();
+    // === 계절(기분) 선택 시 즉시 테마 색 변경 ===
+(function attachMoodThemeHandler(){
+  const root = document.documentElement;
+  const styles = getComputedStyle(root);
+  const colorOf = (mood) => ({
+    '상쾌': styles.getPropertyValue('--spring-color').trim(),
+    '따뜻함': styles.getPropertyValue('--summer-color').trim(),
+    '낭만적': styles.getPropertyValue('--autumn-color').trim(),
+    '고요': styles.getPropertyValue('--winter-color').trim(),
+  }[mood] || styles.getPropertyValue('--primary-color').trim());
+
+  // 바꿔야 할 CSS 변수: --primary-color (라벨/폼 포인트 컬러가 따름)
+  function applyMoodTheme(mood){
+    const c = colorOf(mood);
+    root.style.setProperty('--primary-color', c);
+  }
+
+  // 라디오 변경 시 반영
+  document.querySelectorAll('input[name="mood"]').forEach(radio=>{
+    radio.addEventListener('change', (e)=> applyMoodTheme(e.target.value));
+  });
+
+  // 초기 로드 때, 선택되어 있으면 반영 (기본선택 없으면 패스)
+  const checked = document.querySelector('input[name="mood"]:checked');
+  if (checked) applyMoodTheme(checked.value);
+})();
+
 });
 
 </script>
