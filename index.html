@@ -404,10 +404,10 @@ footer {
                 <div class="records-list-container">
                     <div class="records-header">
                         <div>전체</div>
-                        <div>봄</div>
-                        <div>여름</div>     
-                        <div>가을</div>
-                        <div>겨울</div>
+                        <div>이유</div>
+                        <div>활동</div>     
+                        <div>날짜</div>
+                        <div>기분</div>
                     </div>
                     <div id="records-container">
                         <!-- 기록 목록이 여기에 동적으로 추가됩니다. -->
@@ -471,8 +471,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const row = document.createElement('div');
         row.classList.add('record-row');
 
-        const moodEmojis = { '행복': '😄', '보통': '😐', '우울': '😔', '분노': '😡' };
-        const typeText = { 'deed': '😊 선행했어요', 'help': '💖 도움받았어요' };
+        const moodEmojis = { '상쾌': '🍃', '따뜻함': '🔥', '낭만적': '🌙', '고요': '🌌' };
+        const typeText = { 'deed': '😊 좋아합니다', 'help': '💖 사랑합니다' };
 
         row.innerHTML = `
             <div class="record-type ${record.Type}">${typeText[record.Type] || record.Type}</div>
