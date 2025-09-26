@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
             datasets: [{
                 label: '기분별 횟수',
                 data: Object.values(moodCounts),
-                backgroundColor: ['#FFC107', '#FF7043', '#8BC34A', '#2196F3', '#9C27B0'],
+                backgroundColor: ['#9CCC65', '#29B6F6', '#FB8C00', '#90A4AE', '#9C27B0'],
                 hoverOffset: 4
             }]
         };
